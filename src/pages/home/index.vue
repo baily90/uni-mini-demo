@@ -1,19 +1,18 @@
 <script setup lang='ts'>
-import { getHomeInfo } from '@/apis/home'
+import { usePaddingTopStyle } from '@/utils/hooks'
 
-getHomeInfo().then(res => {
-  console.log(res)
-})
+const paddingTopStyle = usePaddingTopStyle()
 </script>
 
 <template>
   <view class='container'>
+    <CompHeader title="首页" />
     home
   </view>
 </template>
 
 <style lang='scss' scoped>
 .container {
-
+  padding-top: v-bind(paddingTopStyle);
 }
 </style>

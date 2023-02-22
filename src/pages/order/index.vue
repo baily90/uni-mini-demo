@@ -1,19 +1,25 @@
 <script setup lang='ts'>
+import { usePaddingTopStyle } from '@/utils/hooks'
 
+const paddingTopStyle = usePaddingTopStyle()
+const goBack = () => {
+  uni.navigateBack()
+}
 </script>
 
 <template>
   <view class='container'>
-    <!-- <scroll-view :scroll-top="scrollTop" scroll-y="true" class="scroll-Y" @scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll">
-      <view id="demo1" class="scroll-view-item uni-bg-red">A</view>
-      <view id="demo2" class="scroll-view-item uni-bg-green">B</view>
-      <view id="demo3" class="scroll-view-item uni-bg-blue">C</view>
-    </scroll-view> -->
+    <CompHeader title="我的订单">
+      <template #left>
+        <uni-icons type="left" size="24" @click="goBack"></uni-icons>
+      </template>
+    </CompHeader>
+    order
   </view>
 </template>
 
 <style lang='scss' scoped>
 .container {
-
+  padding-top: v-bind(paddingTopStyle);
 }
 </style>

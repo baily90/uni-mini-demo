@@ -1,43 +1,23 @@
-<script setup lang="ts">
-import { useGlobalStore } from '@/stores/global'
-import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+<script setup lang='ts'>
+import { usePaddingTopStyle } from '@/utils/hooks'
 
-const globalStore = useGlobalStore()
-const { statusBarHeight, headerHeight } = storeToRefs(globalStore)
-const statusBarHeightStyle = computed(() => `${statusBarHeight.value}px`)
-const headerHeightStyle = computed(() => `${headerHeight.value}px`)
-
+const paddingTopStyle = usePaddingTopStyle()
 const go2Order = () => {
   uni.navigateTo({
     url: '/pages/order/index'
   })
 }
-
 </script>
 
 <template>
-  <view class="content">
-    <view class="statusBar"></view>
-    <view class="header" @click="go2Order">我的</view>
-    my
+  <view class='container'>
+    <CompHeader title="我的" />
+    <button @click="go2Order">go2Order</button>
   </view>
 </template>
 
-<style lang="scss" scoped>
-  .content {
-    .statusBar {
-      height: v-bind(statusBarHeightStyle);
-      background-color: blueviolet;
-    }
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: v-bind(headerHeightStyle);
-      font-size: 32rpx;
-      font-weight: bold;
-      background-color: antiquewhite;
-    }
-  }
+<style lang='scss' scoped>
+.container {
+  padding-top: v-bind(paddingTopStyle);
+}
 </style>

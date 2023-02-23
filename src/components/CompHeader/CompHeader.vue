@@ -26,7 +26,7 @@ const { title } = toRefs(props)
       <div class="left">
         <slot name="left"></slot>
       </div>
-      <div class="center">
+      <div class="title">
         {{title}}
       </div>
       <div class="right">
@@ -42,11 +42,11 @@ const { title } = toRefs(props)
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #fff;
-  border-bottom: 1px solid #f5f5f5;
+  background-color: $uni-white;
+  border-bottom: 1px solid $uni-border-1;
+  z-index: 1;
   .statusBar {
     height: v-bind(statusBarHeightStyle);
-    // background-color: blueviolet;
   }
   .headerWrap {
     position: relative;
@@ -55,8 +55,7 @@ const { title } = toRefs(props)
     justify-content: space-between;
     height: v-bind(headerHeightStyle);
     padding-left: 20rpx;
-    // background-color: antiquewhite;
-    .center {
+    .title {
       position: absolute;
       top: 0;
       left: 50%;
@@ -66,6 +65,7 @@ const { title } = toRefs(props)
       margin-left: -150rpx;
       width: 300rpx;
       height: 100%;
+      color: $uni-main-color;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

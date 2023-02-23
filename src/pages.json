@@ -10,12 +10,15 @@
 			"path": "pages/my/index"
 		},
 		{
-			"path": "pages/order/index"
+			"path": "pages/order/index",
+			"style": {
+				"enablePullDownRefresh": true
+			}
 		}
 	],
 	"tabBar": {
 		"color": "#666666",
-		"selectedColor": "#ff5500",
+		"selectedColor": "#FF0237",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [
@@ -48,7 +51,6 @@
 	"globalStyle": {
 		"navigationStyle": "custom",
 		"navigationBarTextStyle": "black",
-		"backgroundColor": "#F5F5F8",
-		"enablePullDownRefresh": false
+		"backgroundColor": "#F5F5F8"
 	}
 }

@@ -27,13 +27,13 @@ export default ({ url, method, data = {}, header = {}, hideLoading = false}: IRe
               title: (data as IResponse).msg || '接口异常',
               icon: 'none'
           });
-          return;
+          reject()
         }else if((data as IResponse).code !== 0) {
           uni.showToast({
             title: (data as IResponse).msg || '数据异常',
             icon: 'none'
-        });
-          return;
+          });
+          reject()
         }
         resolve(data as IResponse)
       },
@@ -47,7 +47,7 @@ export default ({ url, method, data = {}, header = {}, hideLoading = false}: IRe
       },
       complete() {
         if (!hideLoading) {
-            uni.hideLoading();
+          uni.hideLoading();
         }
       }
     })

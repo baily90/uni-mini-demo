@@ -20,9 +20,6 @@ const orderList = ref<[]>([])
 const isLoading = ref<boolean>(false)
 
 const paddingTopStyle = usePaddingTopStyle()
-const goBack = () => {
-  uni.navigateBack()
-}
 
 const onTabsChange = (tabIndex: number) => {
   uni.pageScrollTo({
@@ -75,14 +72,11 @@ onReachBottom(() => {
 
 
 </script>
-
 <template>
-  <view class='container'>
-    <CompHeader title="我的订单">
-      <template #left>
-        <uni-icons type="left" size="24" @click="goBack"></uni-icons>
-      </template>
-    </CompHeader>
+  <view class="container">
+    <CompPage title="我的订单">
+      this is content
+    </CompPage>
     <CompTabs :topStyle="paddingTopStyle" :tabs="Tabs" :current="currentTabIndex" @change="onTabsChange" />
     <CompOrderList :list="orderList" />
   </view>
@@ -90,8 +84,6 @@ onReachBottom(() => {
 
 <style lang='scss' scoped>
 .container {
-  padding-top: calc(v-bind(paddingTopStyle) + 96rpx);
-  padding-bottom: constant(safe-area-inset-bottom);
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: 96rpx;
 }
 </style>

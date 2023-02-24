@@ -1,7 +1,5 @@
 <script setup lang='ts'>
-import { usePaddingTopStyle } from '@/utils/hooks'
 
-const paddingTopStyle = usePaddingTopStyle()
 const go2Order = () => {
   uni.navigateTo({
     url: '/pages/order/index'
@@ -10,14 +8,12 @@ const go2Order = () => {
 </script>
 
 <template>
-  <view class='container'>
-    <CompHeader title="我的" />
+  <CompPage title="我的">
+    this is my page
     <button @click="go2Order">go2Order</button>
-  </view>
+  </CompPage>
 </template>
 
 <style lang='scss' scoped>
-.container {
-  padding-top: v-bind(paddingTopStyle);
-}
+
 </style>

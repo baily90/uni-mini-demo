@@ -7,8 +7,9 @@ onLaunch(async () => {
   const globalStore = useGlobalStore()
   const { statusBarHeight, headerHeight } = storeToRefs(globalStore)
   const { top, height } = uni.getMenuButtonBoundingClientRect()
-  statusBarHeight.value = top - 4
-  headerHeight.value = height + 8
+  const systemInfo = uni.getSystemInfoSync()
+  statusBarHeight.value = systemInfo.statusBarHeight
+  headerHeight.value = (top - systemInfo.statusBarHeight) * 2 + height
 })
 onShow(() => {
   console.log('App Show')

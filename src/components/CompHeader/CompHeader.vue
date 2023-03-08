@@ -43,7 +43,6 @@ const { title } = toRefs(props)
   left: 0;
   width: 100%;
   background-color: $uni-white;
-  border-bottom: 1px solid $uni-border-1;
   z-index: 1;
   .statusBar {
     height: v-bind(statusBarHeightStyle);

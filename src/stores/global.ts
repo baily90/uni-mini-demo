@@ -5,7 +5,7 @@ export const useGlobalStore = defineStore(
   'globalStore', 
   () => {
     const statusBarHeight = ref<number>(0)
-    const headerHeight = ref<number>(0)
+    const headerHeight = ref<number>(40)
    
     return { 
       statusBarHeight, 

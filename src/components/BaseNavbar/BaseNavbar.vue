@@ -78,7 +78,7 @@ watch(
     } else {
       uni.setNavigationBarColor({
         frontColor: '#000000',
-        backgroundColor: '#ffffff'
+        backgroundColor: '#000000'
       })
     }
   },

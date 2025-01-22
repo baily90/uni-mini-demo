@@ -3,7 +3,7 @@ import { needLoginPages } from '@/utils'
 
 // 路由拦截器
 const navigateInterceptor = {
-  invoke ({ url }) {
+  invoke({ url }) {
     const path = url.split('?')[0]
     const { isLogined } = useAppStore()
     // 需要登录并且没有登录
@@ -18,8 +18,8 @@ const navigateInterceptor = {
 }
 
 export const routeInterceptor = {
-  install () {
-    ['navigateTo', 'redirectTo', 'reLaunch', 'switchTab'].forEach(item => {
+  install() {
+    ;['navigateTo', 'redirectTo', 'reLaunch', 'switchTab'].forEach((item) => {
       uni.addInterceptor(item, navigateInterceptor)
     })
   }

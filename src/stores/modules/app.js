@@ -1,23 +1,29 @@
-const initLoginState = {
-  userId: undefined,
-  accessToken: undefined,
-  refreshToken: undefined,
-  expiresTime: undefined,
-  openid: undefined
+const initWxInfo = {
+  avatarUrl: undefined,
+  bizUserId: undefined,
+  mobile: undefined,
+  nick: undefined,
+  openId: undefined,
+  sid: undefined,
+  type: undefined,
+  uid: undefined,
+  unionId: undefined,
+  userName: undefined
 }
 
 export const useAppStore = defineStore(
   'app',
   () => {
-    const loginInfo = ref({ ...initLoginState }) // 登录信息
     const windowInfo = ref(null) // 窗口信息
     const capsuleInfo = ref(null) // 胶囊信息
+    const wxInfo = ref({ ...initWxInfo }) // 微信登录信息
 
-    const setLoginInfo = (data) => {
-      loginInfo.value = data
+    const setWxInfo = (data) => {
+      wxInfo.value = data
     }
-    const clearLoginInfo = () => {
-      loginInfo.value = { ...initLoginState }
+
+    const clearWxInfo = () => {
+      wxInfo.value = { ...initWxInfo }
     }
 
     const setWindowInfo = (data) => {
@@ -28,15 +34,18 @@ export const useAppStore = defineStore(
       capsuleInfo.value = data
     }
 
-    const isLogined = computed(() => !!loginInfo.value.accessToken)
+    const sid = computed(() => wxInfo.value?.sid)
+
+    const isLogined = computed(() => !!wxInfo.value?.sid)
 
     return {
       isLogined,
-      loginInfo,
+      sid,
+      wxInfo,
       windowInfo,
       capsuleInfo,
-      setLoginInfo,
-      clearLoginInfo,
+      setWxInfo,
+      clearWxInfo,
       setWindowInfo,
       setCapsuleInfo
     }

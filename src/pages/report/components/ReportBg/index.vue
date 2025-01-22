@@ -2,7 +2,7 @@
   <view class="container-report-bg">
     <image
       class="report-bg"
-      src="https://common-mzt-public.weicha88.com/mzt-mini/bg_report_list.png"
+      src="https://common-mzt-public.weicha88.com/mzt-mini/report_top_bg.png"
       mode="widthFix"
     />
   </view>

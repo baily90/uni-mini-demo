@@ -1,7 +1,5 @@
 import { useAppStore } from '@/stores/modules/app'
-import useModal from '@/hooks/useModal'
 
-const { open, close } = useModal()
 export const request = (options) => {
   return new Promise((resolve, reject) => {
     uni.request({
@@ -9,113 +7,34 @@ export const request = (options) => {
       header: {
         'Content-Type': 'application/json'
       },
-      // eslint-disable-next-line space-before-function-paren
-      success(res) {
+      success: (res) => {
         if (res.statusCode !== 200) {
           uni.showToast({
             icon: 'none',
             title: res.message || '接口异常'
           })
-          reject(res.message || '接口异常')
-        } else if (res.data && res.data.code === 401) {
+          return reject(res.message || '接口异常')
+        } else if (res.data && res.data.code === 600) {
           const userStore = useAppStore()
-          userStore.clearLoginInfo()
+          userStore.clearWxInfo()
           uni.navigateTo({ url: '/pages/login/index' })
-        } else if (res.data && res.data.code !== 0) {
-          if (res.data.code === 401411) {
-            // 当前账号类型已切换
-            const userStore = useAppStore()
-            userStore.clearLoginInfo()
-            open({
-              title: '账号检测',
-              content: res.data.msg || '当前账号类型已切换',
-              backgroundUrl: 'https://common-mzt-public.weicha88.com/dispatch-diag-mini/icon_dialog_fulltime.png',
-              confirmText: '我知道了',
-              onConfirm () {
-                uni.navigateTo({ url: '/pages/login/index' })
-                close()
-              }
-            })
-            // uni.navigateTo({
-            //   url: '/pages/login/index',
-            //   animationDuration: 0,
-            //   success () {
-            //     setTimeout(() => {
-            //       open({
-            //         title: '账号检测',
-            //         content: res.data.msg || '当前账号类型已切换',
-            //         backgroundUrl: 'https://common-mzt-public.weicha88.com/dispatch-diag-mini/icon_dialog_fulltime.png',
-            //         confirmText: '我知道了',
-            //         onConfirm () {
-            //           close()
-            //         }
-            //       })
-            //     }, 500)
-            //   }
-            // })
-          } else if (res.data.code === 401410) {
-            // 当前账号已被冻结
-            const userStore = useAppStore()
-            userStore.clearLoginInfo()
-
-            open({
-              title: '账号异常',
-              content: res.data.msg || '您的账号已被冻结',
-              backgroundUrl: 'https://common-mzt-public.weicha88.com/dispatch-diag-mini/icon_dialog_warning.png',
-              confirmText: '我知道了',
-              onConfirm () {
-                uni.navigateTo({ url: '/pages/login/index' })
-                close()
-              }
-            })
-            // uni.navigateTo({
-            //   url: '/pages/login/index',
-            //   animationDuration: 0,
-            //   success () {
-            //     debugger
-            //     console.log(11111)
-
-            //     setTimeout(() => {
-            //       open({
-            //         title: '账号异常',
-            //         content: res.data.msg || '您的账号已被冻结',
-            //         backgroundUrl: 'https://common-mzt-public.weicha88.com/dispatch-diag-mini/icon_dialog_warning.png',
-            //         confirmText: '我知道了',
-            //         onConfirm () {
-            //           close()
-            //         }
-            //       })
-            //     }, 500)
-            //   }
-            // })
-          } else if (res.data.code === 604005002) {
-            // 一周只能改一次，7天后再来哦
-            open({
-              title: '温馨提示',
-              content: res.data.msg || '一周只能改一次，7天后再来哦',
-              confirmText: '我知道了',
-              onConfirm () {
-                close()
-              }
-            })
-          } else {
-            uni.showToast({
-              icon: 'none',
-              title: res.data.msg
-            })
-          }
-          reject(res.data.msg)
+          return reject(res.data.msg || '登录失效')
+        } else if (res.data && res.data.code !== 200) {
+          uni.showToast({
+            icon: 'none',
+            title: res.data.msg || '接口异常'
+          })
+          return reject(res.data.msg || '接口异常')
+        } else if (res.data && res.data.code === 200) {
+          return resolve(res.data)
         }
-        // 返回消息
-        resolve(res.data)
       },
-      // eslint-disable-next-line space-before-function-paren
-      fail(err) {
+      fail: (err) => {
         uni.showToast({
           icon: 'none',
           title: err.errMsg
         })
-        reject(err)
+        return reject(err)
       }
     })
   })

@@ -13,7 +13,7 @@
         @refresherrefresh="onRefresh"
         @scrolltolower="scrollLower"
       >
-        <ReportItem v-for="item in dataSource?.list" :key="item.id" />
+        <ReportItem v-for="report in dataSource?.list" :key="report.id" :report="report" />
         <view v-if="isEmptyBoxShow">
           <up-empty
             width="523rpx"
@@ -33,7 +33,7 @@
 
 <script setup>
 import useListQuery from '@/hooks/useListQuery'
-import { getInspectReportList } from '@/api/report'
+import { patientInspectReportList } from '@/api/report'
 import { getPatientById } from '@/api/my'
 import ReportBg from './components/ReportBg/index.vue'
 import Welcome from './components/Welcome/index.vue'
@@ -50,7 +50,7 @@ const {
   onRefresh,
   scrollLower,
   fetchData
-} = useListQuery(getInspectReportList, {}, false)
+} = useListQuery(patientInspectReportList, {}, false)
 
 onShow(() => {
   searchParams.value.page = 1

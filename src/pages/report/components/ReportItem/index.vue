@@ -1,28 +1,41 @@
 <template>
-  <view class="container-report-item">
+  <view class="container-report-item" @click="go2Detail">
     <view class="btn-detail">查看详情</view>
     <view class="title">
-      <image
-        class="icon-position"
-        src="https://common-mzt-public.weicha88.com/mzt-mini/report_top_bg.png"
-        mode="widthFix"
-      />
-      颈动脉检查报告
+      <image class="icon-position" :src="report.regionImg" mode="widthFix" />
+      {{ report?.bodyRegionName }}检查报告
     </view>
     <view class="wrap">
       <view class="detail">
         <view class="detail-item">
           <view class="detail-item-label">就诊机构：</view>
-          <view class="detail-item-value">浉河社区卫生医院</view>
+          <view class="detail-item-value">{{ report?.orgName }}</view>
         </view>
         <view class="detail-item">
           <view class="detail-item-label">出具时间：</view>
-          <view class="detail-item-value">2024-06-06 12:18:25</view>
+          <view class="detail-item-value">{{ report?.reportTime }}</view>
         </view>
       </view>
     </view>
   </view>
 </template>
+
+<script setup>
+import { throttle } from '@/utils/index'
+
+const props = defineProps({
+  report: {
+    type: Object,
+    default: () => {}
+  }
+})
+
+const go2Detail = throttle(() => {
+  uni.navigateTo({
+    url: `/pages/reportDetail/reportDetail?id=${props.report.id}`
+  })
+}, 1000)
+</script>
 
 <style lang="scss" scoped>
 .container-report-item {
@@ -78,6 +91,9 @@
           font-size: 28rpx;
           color: #666666;
           line-height: 48rpx;
+        }
+        .detail-item-label {
+          flex-shrink: 0;
         }
         .detail-item-value {
           font-weight: 500;

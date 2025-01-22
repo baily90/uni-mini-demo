@@ -21,6 +21,8 @@
   },
   "pages": [
     { "path": "pages/report/report" },
+    { "path": "pages/reportDetail/reportDetail" },
+    { "path": "pages/imgList/imgList" },
     { "path": "pages/my/index" },
     { "path": "pages/login/index" }
   ],

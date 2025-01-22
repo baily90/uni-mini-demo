@@ -1,8 +1,8 @@
 import { request } from '@/utils/request'
 
-export const loginByWeixin = (data) =>
+export const configList = (data) =>
   request({
-    url: 'wxapplet/user/authorize/info.do',
+    url: 'pub/config/list.do',
     method: 'POST',
     data
   })

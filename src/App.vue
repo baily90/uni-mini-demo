@@ -3,20 +3,11 @@ import { useAppStore } from '@/stores/modules/app'
 const { setWindowInfo, setCapsuleInfo } = useAppStore()
 
 onLaunch(() => {
-  console.log('App Launch')
   uni.hideTabBar()
   // 检查小程序是否有新版本
   onCheckForUpdate()
   // 初始化一些公共参数
   initGlobalOptions()
-})
-
-onShow((options) => {
-  console.log('App onShow', options)
-})
-
-onHide(() => {
-  console.log('App onHide')
 })
 
 /**

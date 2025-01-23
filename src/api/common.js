@@ -6,3 +6,10 @@ export const configList = (data) =>
     method: 'POST',
     data
   })
+
+export const doctorAgreements = (data) =>
+  request({
+    url: 'mzt-clinic-api/agreement/doctor_agreements',
+    method: 'POST',
+    data
+  })

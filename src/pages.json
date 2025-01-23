@@ -24,14 +24,15 @@
     { "path": "pages/reportDetail/reportDetail" },
     { "path": "pages/imgList/imgList" },
     { "path": "pages/my/index" },
-    { "path": "pages/login/index" }
+    { "path": "pages/login/index" },
+    { "path": "pages/webview/index" }
   ],
-  // "subPackages": [
-  //   {
-  //     "root": "pagesA",
-  //     "pages": []
-  //   }
-  // ],
+  "subPackages": [
+    {
+      "root": "pagea",
+      "pages": [{ "path": "infoNew/infoNew" }]
+    }
+  ],
   "globalStyle": {
     "navigationStyle": "custom",
     "navigationBarTextStyle": "black",

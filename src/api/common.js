@@ -13,3 +13,10 @@ export const doctorAgreements = (data) =>
     method: 'POST',
     data
   })
+
+export const sendSmsCode = (data) =>
+  request({
+    url: 'wxapplet/patient/send-sms-code.do',
+    method: 'POST',
+    data
+  })

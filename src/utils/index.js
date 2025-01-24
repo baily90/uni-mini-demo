@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import pagesJson from '@/pages.json'
 
 /**
@@ -50,3 +49,13 @@ export const getPages = (key = 'needLogin') => {
 }
 
 export const needLoginPages = getPages('needLogin').map((page) => page.path)
+
+export const checkIdCard = (idCard) => {
+  const idcardReg =
+    /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/
+  return idcardReg.test(idCard)
+}
+export const checkMobile = (mobile) => {
+  const mobileReg = /^1[3,4,5,6,7,8,9][0-9]{9}$/
+  return mobileReg.test(mobile)
+}

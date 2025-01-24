@@ -27,6 +27,7 @@
 </template>
 
 <script setup>
+import { throttle } from '@/utils/index'
 import { useAppStore } from '@/stores/modules/app'
 import { loginByWeixin } from '@/api/login'
 
@@ -35,11 +36,11 @@ const { setWxInfo } = appStore
 
 const code = ref(null)
 
-const onHomeHandle = () => {
+const onHomeHandle = throttle(() => {
   uni.switchTab({
     url: '/pages/report/report'
   })
-}
+}, 1000)
 
 onLoad(() => {
   uni.login({
@@ -51,14 +52,14 @@ onLoad(() => {
   })
 })
 
-const bindGetUserInfo = async (e) => {
+const bindGetUserInfo = throttle(async () => {
   wx.getUserProfile({
     desc: '用于完善资料',
     success: async (res) => {
       await onLoginHandle(res.userInfo)
     }
   })
-}
+}, 1000)
 
 const onLoginHandle = async (userInfo) => {
   if (userInfo) {
@@ -75,9 +76,6 @@ const onLoginHandle = async (userInfo) => {
           if (code === 200) {
             setWxInfo(data)
             uni.navigateBack()
-            // uni.switchTab({
-            //   url: '/pages/report/report'
-            // })
           }
         }
       }

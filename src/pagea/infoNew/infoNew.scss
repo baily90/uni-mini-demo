@@ -3,7 +3,6 @@
   flex-flow: column nowrap;
   width: 100%;
   height: 100vh;
-  // background-color: linear-gradient(180deg, #2d8aff 0%, #75b0ff 100%);
   background: #2d8aff url('https://common-mzt-public.weicha88.com/mzt-mini/infonew_top_bg.png')
     no-repeat top center;
   background-size: 100% auto;
@@ -22,15 +21,13 @@
     color: #ffffff;
     line-height: 35rpx;
   }
-  .scroll-view {
+  .wrap {
     flex: 1;
     margin-top: 72rpx;
     width: 100%;
-    height: 100%;
-    padding: 58rpx 46rpx 0 40rpx;
+    padding: 58rpx 46rpx 58rpx 40rpx;
     border-radius: 48rpx 48rpx 0rpx 0rpx;
     background-color: #ffffff;
-    box-sizing: border-box;
   }
   .idcard {
     display: flex;
@@ -71,17 +68,37 @@
       line-height: 40rpx;
       border-color: #eee !important;
       .item-label {
+        display: flex;
         flex-shrink: 0;
       }
       .item-value {
         flex: 1;
         font-weight: 500;
       }
+      .btn-send-msg {
+        font-weight: 500;
+        font-size: 32rpx;
+        color: #0095ff;
+        line-height: 38rpx;
+      }
+    }
+    :deep(.placeholder-value) {
+      font-size: 34rpx !important;
+      line-height: 40rpx;
+      color: #999 !important;
     }
   }
-  :deep(.placeholder-value) {
-    font-size: 34rpx !important;
-    line-height: 40rpx;
-    color: #999 !important;
+  .btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100rpx;
+    width: 650rpx;
+    height: 100rpx;
+    background: #3f93ff;
+    border-radius: 50rpx;
+    font-weight: 500;
+    font-size: 34rpx;
+    color: #ffffff;
   }
 }
